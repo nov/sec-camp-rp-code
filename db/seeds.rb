@@ -8,8 +8,14 @@
 
 case Rails.env
 when 'production'
-  # TODO
-  raise 'register your client'
+  Client.create(
+    identifier: '1735ae91cb46163c0cb9cf8044888962',
+    secret: '25b28b72d1c067e156de71e8b2f33b59d671c22553750483ccf9ece1828adf9f',
+    redirect_uri: 'https://sec-camp-rp-code.herokuapp.com/callback',
+    authorization_endpoint: 'https://sec-camp-idp.herokuapp.com/authorizations/new',
+    token_endpoint: 'https://sec-camp-idp.herokuapp.com/tokens',
+    userinfo_endpoint: 'https://sec-camp-idp.herokuapp.com/user_info'
+  )
 when 'development'
   Client.create(
     identifier: '8d6c384015481a2e1e6151bcd283a64d',

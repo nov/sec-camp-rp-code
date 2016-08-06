@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to current_client.authorization_uri(scope: [:openid, :email, :profile])
+    redirect_to current_client.authorization_uri(
+      max_age: 0,
+      prompt: :login,
+      scope: [:openid, :email, :profile]
+    )
   end
 
   def create

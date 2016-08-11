@@ -6,8 +6,9 @@ class Account < ApplicationRecord
   end
 
   class << self
-    def authenticate(token_response)
-      id_token = JSON::JWT.decode token_response.id_token, :skip_verification
+    def authenticate(id_token_str, nonce)
+      id_token = JSON::JWT.decode id_token_str, :skip_verification
+      # raise 'Invalid Nonce' unless id_token[:nonce] == nonce
       find_or_initialize_by(identifier: id_token[:sub])
     end
   end
